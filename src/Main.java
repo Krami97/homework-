@@ -6,23 +6,29 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Saznaj broj znamenki nekog broja");
-        System.out.println("Unesite neki cijeli broj:");
-        int N = scanner.nextInt();
-        int decimalPlaces = 0;
-        if (N<0){
-            N*=-1;
+        System.out.println("Unos brojeva dok ne postignemo određeni zbroj");
+        int setNumber = 166;
+        int attempts = 0 ;
+        int sum = 0;
+        int choice;
+
+        do{
+            System.out.println("Unesi borj: ");
+            choice = scanner.nextInt();
+            if (choice > 0){
+                sum+=choice;
+
+            }
+            attempts++;
+        }while (sum< setNumber && choice != 0 );
+
+        System.out.println("suma unesenih brojeva= " + sum);
+
+        // ovaj if sam dodao jer nisam bio sigurn dali zelis da se broj pokusaja ispise ako ako koirisnik unese 0
+        if (choice>0){
+            System.out.println("broj pokusaja= " + attempts);
         }
-
-        while (N>0){
-            N/=10;
-            decimalPlaces++;
-
-        }
-
-        System.out.println("Uneseni broj ima "+ decimalPlaces + " znamenke");
-
-
 
     }
 }
+//također nisam bio sigurn dali želiš da se negativni brojebi broje kao pokusaji ali zakljucio sam da vjerovatno da 
