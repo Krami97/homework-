@@ -6,29 +6,25 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Unos brojeva dok ne postignemo određeni zbroj");
-        int setNumber = 166;
-        int attempts = 0 ;
-        int sum = 0;
-        int choice;
+        int najveciBroj;
+        System.out.println("Koliko brojeva želite unjesti?");
+        int velicinaPolja = scanner.nextInt();
+        int[] polje = new int[velicinaPolja];
 
-        do{
-            System.out.println("Unesi borj: ");
-            choice = scanner.nextInt();
-            if (choice > 0){
-                sum+=choice;
-
-            }
-            attempts++;
-        }while (sum< setNumber && choice != 0 );
-
-        System.out.println("suma unesenih brojeva= " + sum);
-
-        // ovaj if sam dodao jer nisam bio sigurn dali zelis da se broj pokusaja ispise ako ako koirisnik unese 0
-        if (choice>0){
-            System.out.println("broj pokusaja= " + attempts);
+        for(int i = 0;i<polje.length;i++){
+            System.out.printf("Unesi %d broj\n",i+1);
+            polje[i]= scanner.nextInt();
         }
+        najveciBroj = polje[0];
+
+        for (int i : polje) {
+            if (i > najveciBroj){
+                najveciBroj = i;
+            }
+        }
+        System.out.printf("od svih unesenih brojeva najveci je %d",najveciBroj);
+
+
 
     }
 }
-//također nisam bio sigurn dali želiš da se negativni brojebi broje kao pokusaji ali zakljucio sam da vjerovatno da 
