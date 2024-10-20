@@ -9,27 +9,35 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         List<Integer> numberList = new ArrayList<>();
+        List<Integer> listaBrojaca = new ArrayList<>();
 
-
-        for(int i = 0 ; i<10;i++){
+        // inicializacija liste brojaca na nulu
+        for (int i = 0; i < 10; i++) {
+            listaBrojaca.add(0);
+        }
+        // unos brojeva od starane korisnika
+        for(int i = 0 ; i<10 ;i++){
             System.out.printf("Unesi %d. broj:\n",i+1);
             numberList.add(scanner.nextInt());
         }
-        //Pronaženje najmanjeg i največeg broja u listi
-        int minimum = Collections.min(numberList);
-        int maximum = Collections.max(numberList);
-        // Pronaženje indexa najmanjeg i največeg broja u listi
-        int indexOfMinimum = numberList.indexOf(minimum);
-        int indexOfMaximum = numberList.indexOf(maximum);
-        // zamjena najmanjeg i največeg broja u listi
-        numberList.set(indexOfMinimum,maximum);
-        numberList.set(indexOfMaximum,minimum);
-        // i
-        System.out.println("Nova lista brojeva");
-        for (Integer i : numberList) {
-            System.out.printf("%d,",i);
+        // provjera koliko se koji borj ponaclja?
+        for (int i = 0 ;i<10;i++) {
+            int trenutniBroj = numberList.get(i);
+            for (Integer integer : numberList) {
+                if(trenutniBroj== integer){
+                    listaBrojaca.set(i,listaBrojaca.get(i)+1);
+                }
+
+            }
 
         }
-    }
-
+        int maxTimes = Collections.max(listaBrojaca);
+        int indexOfMax = listaBrojaca.indexOf(maxTimes);
+        int maxTimesNumber = numberList.get(indexOfMax);
+        if(maxTimes>1){
+            System.out.printf("Najcesce unesen broj je %d i on je unesen %d puta",maxTimesNumber,maxTimes);
+        }else{
+            System.out.println("Nijedan unsesni borj nije unesen vise od jedanput");
+        }
+}
 }
