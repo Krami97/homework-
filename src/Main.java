@@ -5,32 +5,39 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Unesi rečienicu:");
+        String recenica = scanner.nextLine();
 
-        List<Integer> brojevi = new ArrayList<>();
 
-        System.out.println("koliko brojeva zelite unjeti:");
-        int brojUnosa = scanner.nextInt();
-
-        for(int i = 0; i<brojUnosa; i++){
-            System.out.printf("unesite %d broj",i+1);
-            brojevi.add(scanner.nextInt());
-        }
-
-        System.out.println("Lista je uzlazno sortirana je :"+ uzlaznoSoritiranaLista(brojevi));
+        wordStats(recenica);
 
 
 
 
     }
-    public static boolean uzlaznoSoritiranaLista(List<Integer> listaBrojeva){
-        int trenutniBroj = listaBrojeva.get(0);
-        for (Integer i : listaBrojeva) {
-            if (i>= trenutniBroj){
-                trenutniBroj=i;
-            }else{
-                return false;
+    public static void wordStats(String recenica){
+        String[] rijeci =recenica.split(" ");
+        String najdulajaRijec = rijeci[0];
+        int brojacSlova = 0;
+        List<String> rijeciPetPlus = new ArrayList<>();
+
+        for (String s : rijeci) {
+            brojacSlova+= s.length();
+            if(s.length()>najdulajaRijec.length()){
+                najdulajaRijec = s;
+            }
+            if(s.length()>5){
+                rijeciPetPlus.add(s);
             }
         }
-        return true;
+        System.out.println("Najduza rejc je :" + najdulajaRijec);
+        float prosjecnaDuljinaRijeci = (float) brojacSlova/ rijeci.length;
+        System.out.println("Prosjecna duljina rijeci je :"+prosjecnaDuljinaRijeci);
+        System.out.println("Rjeci dulje od 5 znakova su :");
+        for (String petPlus : rijeciPetPlus) {
+            System.out.println(petPlus);
+
+        }
     }
+
 }
