@@ -1,88 +1,67 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int userChoice = 0;
-        List<String> brojevi =new ArrayList<>();
-        List<String> imena = new ArrayList<>();
+        System.out.println("Koliko  novca želite?");
+        String novac = scanner.nextLine();
 
-        do{
-            System.out.println("Telefonski imenitk");
-            System.out.println("Odaberite sljedecu akciju:");
-            System.out.println("odaberite 1 za dodavanje novog kontakta u imenik");
-            System.out.println("odaberite 2 za pretraživanje po imenu");
-            System.out.println("odaberite 3 za pretraživanje po telefonskom broju korisnika");
-            System.out.println("odaberite 4 za ispis cjelog imenika");
-            System.out.println("odaberite 5 za izlaz");
-            userChoice =  scanner.nextInt();
+        kusur(novac);
 
-            switch (userChoice){
-                case 1:
-                    brojevi = dodajBroj(brojevi);
-                    imena = dodajIme(imena);
-                    break;
+    }
+    public static void kusur(String novac){
+        Float novacfloat = Float.valueOf(novac);
+        while(novacfloat>0){
+            if(novacfloat-500>=0){
+                System.out.println(500);
+                novacfloat = novacfloat - 500;
+            }else if(novacfloat-200>=0){
+                System.out.println(200);
+                novacfloat = novacfloat -200;
+            }else if(novacfloat-100>=0){
+                System.out.println(100);
+                novacfloat = novacfloat - 100;
+            }else if(novacfloat-50>=0){
+                System.out.println(50);
+                novacfloat = novacfloat - 50;
+            }else if(novacfloat-20>=0) {
+                System.out.println(20);
+                novacfloat = novacfloat - 20;
+            }else if(novacfloat-10>=0) {
+                System.out.println(10);
+                novacfloat = novacfloat - 10;
+            }else if(novacfloat-5>=0) {
+                System.out.println(5);
+                novacfloat = novacfloat - 5;
+            }else if(novacfloat-2>=0) {
+                System.out.println(2);
+                novacfloat = novacfloat - 2;
+            }else if(novacfloat-1>=0) {
+                System.out.println(1);
+                novacfloat = novacfloat - 1;
+            }else if(novacfloat-0.5>=0) {
+                System.out.println(0.5);
+                novacfloat = (float) (novacfloat - 0.5);
+            }else if(novacfloat-0.2>=0) {
+                System.out.println(0.2);
+                novacfloat = (float) (novacfloat - 0.2);
+            }else if(novacfloat-0.1>=0) {
+                System.out.println(0.1);
+                novacfloat = (float) (novacfloat - 0.1);
+            }else if(novacfloat-0.05>=0) {
+                System.out.println(0.05);
+                novacfloat = (float) (novacfloat - 0.05);
+            }else if(novacfloat-0.02>=0) {
+                System.out.println(0.02);
+                novacfloat = (float) (novacfloat - 0.02);
+            }else if(novacfloat-0.01>=0) {
+                System.out.println(0.01);
 
-                case 2:
-                    pretraziPoimenu(brojevi,imena);
-                    break;
-                case 3:
-                    pretraziPoBroju(brojevi,imena);
-                    break;
-                case 4:
-                    ispisTelefonskogImenika(brojevi,imena);
-                    break;
-                default:
-                    System.out.println("krivi odabir");
+                novacfloat = (float) (novacfloat - 0.01);
             }
 
-        }while(userChoice != 5);
-        System.out.println("Izašli ste iz imenika");
-    }
-    public static List<String> dodajBroj(List<String> brojevi){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Unesitie Broj:");
-        brojevi.add(scanner.nextLine());
-        return brojevi;
-    }
-    public static List<String> dodajIme(List<String> imena){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Unesitie ime:");
-        imena.add(scanner.nextLine());
-        return imena;
-    }
-    public static void pretraziPoBroju(List<String> brojevi,List<String> imena){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("unesiti broj kako bi saznali ime");
-        String broj  = scanner.nextLine();
-        if(brojevi.contains(broj)){
-            System.out.println("korisnik tog borja je:" + imena.get(brojevi.indexOf(broj)));
-        }else{
-            System.out.println("Korisnik toga broja ne postoji u imeniku");
-        }
-        System.out.println(" ");
-    }
-    public static void pretraziPoimenu(List<String> brojevi,List<String> imena){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("unesiti ime kako bi saznali broj korisnika");
-        String ime  = scanner.nextLine();
-        if(imena.contains(ime)){
-            System.out.println("Korisnik "+ ime +" ima broj :" + brojevi.get(imena.indexOf(ime)));
-        }else{
-            System.out.println("U imeniku ne postoji korisnik sa tim imenom");
-        }
-        System.out.println(" ");
-    }
-    public static void ispisTelefonskogImenika(List<String> brojevi,List<String> imena){
-        System.out.println("Kontakti u imeniku su:");
-        for(int i = 0;i<imena.size(); i++){
-            System.out.println(imena.get(i) +" | "+ brojevi.get(i));
-        }
-        System.out.println(" ");
-    }
 
 
-
+        }
+    }
 }
