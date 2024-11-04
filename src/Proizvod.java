@@ -21,4 +21,7 @@ public class Proizvod {
     public String getNaziv(){
         return this.naziv;
     }
+    public BigDecimal getCijena(){
+        return this.cijena;
+    }
 }
