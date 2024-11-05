@@ -22,5 +22,8 @@ public class Student {
     public double getProsjekOcjena(){
         return this.prosjekOcjena;
     }
+    public void promjeniProsjekOcjena(double noviProsjek){
+        this.prosjekOcjena = noviProsjek;
+    }
 
 }

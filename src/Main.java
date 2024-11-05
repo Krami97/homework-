@@ -4,42 +4,13 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        List<Student> Studenti = new ArrayList<>();
-
-        Studenti.add(unosStudenta());
-        int odabir;
-        do{
-            System.out.println("Odaberitie:");
-            System.out.println("1 za unos jos studenata");
-            System.out.println("2 za ispis studenta");
-            System.out.println("3 za ispis najboljeg studenta");
-            System.out.println("4 za ispis najlošijeg studenta");
-            System.out.println("5 za prosjek ocjana svih studenata");
-            System.out.println("6 za izlaz");
-            odabir =scanner.nextInt();
-
-            switch (odabir){
-                case 1:
-                    Studenti.add(unosStudenta());
-                    break;
-                case 2:
-                    ispisStudenata(Studenti);
-                    break;
-                case 3:
-                    najboljiStudent(Studenti);
-                    break;
-                case 4:
-                    najgoriStudent(Studenti);
-                    break;
-                case 5:
-                    prosjekStudenata(Studenti);
-                    break;
-            }
-
-        }while(odabir!=6);
-
-
+        Student student = new Student("tin","kramaric","123",3.3);
+        Student kopijaStudent = student;
+        student.promjeniProsjekOcjena(4.4);
+        System.out.println(student.getProsjekOcjena());
+        System.out.println(kopijaStudent.getProsjekOcjena());
+        //dobijemo iste vrijednosti jer smo u variablu kopijaStudent spremili adresu objekta student to jest istu referencu na objekt
+        //Promjena napravljena u jednoj referenci utjece na drugu jer pokazuju na isti objekt u memoriji
 
 
 
