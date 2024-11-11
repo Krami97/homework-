@@ -13,24 +13,23 @@ public class Main {
 
         switch (odabir){
             case 1:
-                Placanje kartica = new KreditnaKartica();
-                kartica.plati(iznosZaPlatiti);
-                System.out.println(kartica.getDetalje());
+                provediPlacanje(new KreditnaKartica(),iznosZaPlatiti);
                 break;
             case 2:
-                Placanje gotovina = new Gotovina();
-                gotovina.plati(iznosZaPlatiti);
-                System.out.println(gotovina.getDetalje());
+                provediPlacanje(new Gotovina(),iznosZaPlatiti);
                 break;
             case 3:
-                Placanje paypal = new PayPal();
-                paypal.plati(iznosZaPlatiti);
-                System.out.println(paypal.getDetalje());
+                provediPlacanje(new PayPal(),iznosZaPlatiti);
                 break;
         }
 
 
 
+
+    }
+    public static void provediPlacanje( Placanje tipPlacanja, double iznosPlacanja){
+        tipPlacanja.plati(iznosPlacanja);
+        System.out.println(tipPlacanja.getDetalje());
 
     }
 
