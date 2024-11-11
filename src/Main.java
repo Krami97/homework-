@@ -1,67 +1,38 @@
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Zaposlenik> zaposlenici = new ArrayList<>();
-        int korisnikovOdabir;
 
-        unosZapolenikaUListu(zaposlenici);
-        izracunajStvarnuPlacuSvihZapolenika(zaposlenici);
-        do{
-            System.out.println("Odaberi 1 za unos jos zaposelnika");
-            System.out.println("Odaberi 2 za ispis svih zaposlenika i njihovih podataka");
-            System.out.println("Odaberi 3 za izlaz iz porgrama");
-            korisnikovOdabir = scanner.nextInt();
+        System.out.println("Unesite iznos za platiti:");
+        double iznosZaPlatiti = scanner.nextDouble();
 
-            switch (korisnikovOdabir){
-                case 1:
-                    unosZapolenikaUListu(zaposlenici);
-                    izracunajStvarnuPlacuSvihZapolenika(zaposlenici);
-                    break;
-                case 2:
-                    ispisPodatakaSvihZaposlenika(zaposlenici);
-                    break;
-            }
-        }while(korisnikovOdabir!=3);
+        System.out.println("Odaberite nacin placanja: \n1.Kartica\n2.gotovina\n3.Paypal");
+        int odabir = scanner.nextInt();
 
-
-
-    }
-    public static void unosZapolenikaUListu(List<Zaposlenik> zaposlenici){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Unesite ime zaposlenika: ");
-        String ime = scanner.nextLine();
-        System.out.println("Unesite broj radnih sati zaposlenika: ");
-        Integer brojSati = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Unesiti osnovnu placu zaposlenika: ");
-        BigDecimal osnovnaPlaca = java.math.BigDecimal.valueOf(scanner.nextDouble());
-        scanner.nextLine();
-        System.out.println("Unesi tip zaposlenika stalni/sezonski: ");
-        String tipZaposlenika = scanner.nextLine();
-        if (tipZaposlenika.equals("stalni")){
-            zaposlenici.add(new Stalni(ime,osnovnaPlaca,brojSati));
-        }else if(tipZaposlenika.equals("sezonski")){
-            zaposlenici.add(new Sezonski(ime,osnovnaPlaca,brojSati));
-        }else {
-            System.out.println("Neispravan unos , pokušaj ponovno");
-            unosZapolenikaUListu(zaposlenici);
+        switch (odabir){
+            case 1:
+                Placanje kartica = new KreditnaKartica();
+                kartica.plati(iznosZaPlatiti);
+                System.out.println(kartica.getDetalje());
+                break;
+            case 2:
+                Placanje gotovina = new Gotovina();
+                gotovina.plati(iznosZaPlatiti);
+                System.out.println(gotovina.getDetalje());
+                break;
+            case 3:
+                Placanje paypal = new PayPal();
+                paypal.plati(iznosZaPlatiti);
+                System.out.println(paypal.getDetalje());
+                break;
         }
+
+
+
+
     }
-    public static void izracunajStvarnuPlacuSvihZapolenika(List<Zaposlenik> zaposlenici){
-        for (Zaposlenik zaposlenik : zaposlenici) {
-            zaposlenik.izracunStvarnePlace();
-        }
-    }
-    public static void ispisPodatakaSvihZaposlenika(List<Zaposlenik> zaposlenici){
-        for (Zaposlenik zaposlenik : zaposlenici) {
-            zaposlenik.ispisPodatakaZaposlenika();
-            System.out.println(" ");
-        }
-    }
+
 
 }
