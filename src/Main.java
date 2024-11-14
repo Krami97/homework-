@@ -1,34 +1,31 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Integer unos = null;
-        long rezultat = 0;
+    public static void main(String[] args) throws IOException {
+        Student student1 = new Student("Tin", "Kramaric", "00001");
+        Student student2 = new Student("Pero", "Peric", "00002");
+        Student student3 = new Student("Ana", "Ankic", "00003");
 
-        System.out.println("Unesite broj");
-        try {
-            unos = scanner.nextInt();
 
-            rezultat = izracunajFaktorijel(unos);
-            System.out.println("Faktorijel od broja " + unos + " iznosi " + rezultat);
-        } catch (InputMismatchException e) {
-            System.out.println("Greška: Molimo unesite cijeli broj.");
-        } catch (Exception e) {
-            System.out.println("Greška: " + e.getMessage());
-        }
-    }
 
-    public static long izracunajFaktorijel(int broj) throws Exception {
-        if (broj < 0) {
-            throw new Exception("Faktorijel nije definiran za negativne brojeve.");
+        PrintWriter writer = new PrintWriter("studenti.txt");
+        writer.println(student1.toString());
+        writer.println(student2.toString());
+        writer.println(student3.toString());
+        writer.close();
+
+        FileReader reader = new FileReader("studenti.txt");
+        int brojZnakova = 0;
+        int c;
+        while ((c = reader.read()) != -1) {
+                brojZnakova++;
+
         }
-        long rezultat = 1;
-        for (int i = 1; i <= broj; i++) {
-            rezultat *= i;
-        }
-        return rezultat;
+        reader.close();
+        System.out.println("Broj slova u datoteci: " + brojZnakova);
     }
 }
+
 
