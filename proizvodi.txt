@@ -1,0 +1,9 @@
+Proizvoidi:
+------------------------------------------------------------------
+|Naziv proizvoda: jaje|Cijena proizvoda: 0.1$|Kolicna proizvoda: 10|
+------------------------------------------------------------------
+|Naziv proizvoda: banane|Cijena proizvoda: 0.3$|Kolicna proizvoda: 6|
+------------------------------------------------------------------
+|Naziv proizvoda: kava|Cijena proizvoda: 5.0$|Kolicna proizvoda: 11|
+------------------------------------------------------------------
+|Naziv proizvoda: kruh|Cijena proizvoda: 1.3$|Kolicna proizvoda: 50|

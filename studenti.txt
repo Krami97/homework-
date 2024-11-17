@@ -1,3 +1,0 @@
-Ime: Tin, Prezime: Kramaric, Broj Indexa: 00001
-Ime: Pero, Prezime: Peric, Broj Indexa: 00002
-Ime: Ana, Prezime: Ankic, Broj Indexa: 00003
