@@ -1,70 +1,72 @@
+
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws PrazanString, NemozeNulaImanjiodNule {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        Tvrtka tvrtka = new Tvrtka("Algebra");
-
-        for(int i = 0;i<3;i++){
-            tvrtka.dodajZaposlenika(unosPodatkaZaposlenika());
-        }
-
-        int korisnikovOdabir;
-        do {
-            System.out.println("Odaberite:" +
-                    "\n1. Unos zaposlenika" +
-                    "\n2. Ispis svih Zaposlnika" +
-                    "\n3. Za pronalazenje zapolenika sa najcecom placom" +
-                    "\n4. Za izlaz iz programa");
-
-            korisnikovOdabir = scanner.nextInt();
-            switch (korisnikovOdabir){
+        int odabir = 0;
+        Knjiznica knjiznica = new Knjiznica();
+        do{
+            System.out.println("Knjiznica odabir:");
+            System.out.println(
+                    "1.uclnai se u knjiznicu\n" +
+                    "2.posudi knjigu\n" +
+                    "3.vrati knjigu\n" +
+                    "4.dostupne knjige\n" +
+                    "5.posudene knjige\n" +
+                    "6.ispis clanova\n" +
+                    "7.dodaj novu knjigu u knjiznicu\n"+
+                    "0.izlaz");
+            odabir =scanner.nextInt();
+            switch (odabir){
                 case 1:
-                    tvrtka.dodajZaposlenika(unosPodatkaZaposlenika());
+                    knjiznica.unosNovagClana();
                     break;
                 case 2:
-                    tvrtka.ispisZaposlenika();
+                    posudivanjeKjige(knjiznica);
                     break;
-                case 3:
-                    Zaposlenik zaposlenik = tvrtka.prondjiNajvecuPlacu();
-                    System.out.println("zaposlenik sa najcecom placom je:");
-                    zaposlenik.ispisiPodtkeZaposlenika();
-                    break;
-                default:
-                    System.out.println("krivi unos");
 
 
             }
-        }while(korisnikovOdabir!=4);
-        
+
+        }while(odabir!=0);
+
+    }
+    public static void posudivanjeKjige(Knjiznica knjiznica){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" ");
+        System.out.println("ime knjige");
+        String imeKnjige = scanner.nextLine();
+        System.out.println("Ime Clana");
+        String imeClana  = scanner.nextLine();
+        try{
+            Clan clan = knjiznica.prodadiClanaPoImenu(imeClana);
+            if(clan == null){
+                throw new ClanNePostoji();
+            }
+            Knjiga knjiga = knjiznica.prodadiKnjiguPoImenu(imeKnjige);
+            if (knjiga == null){
+                throw new KnjigaNijeDostupna();
+            }
+            knjiznica.posudivanjeKnjige(knjiga,clan);
+
+
+        }catch (ClanNePostoji e){
+            System.out.println(" ");
+            System.out.println("korisnik ne postoji");
+            System.out.println("Prvo se registrirajte");
+            knjiznica.unosNovagClana();
+
+        }catch (KnjigaNijeDostupna e){
+            System.out.println("Knjiga koju ster trazili trenutno nepostoji");
+
+        }
 
     }
 
-    public static Zaposlenik unosPodatkaZaposlenika() throws PrazanString, NemozeNulaImanjiodNule {
-        Scanner scanner = new Scanner(System.in);
-        String ime;
-        String prezime;
-        double placa;
-        System.out.println("Unestie ime zaposlenika");
-        ime = scanner.nextLine();
-        System.out.println("Uneste prezime zaposlenika");
-        prezime = scanner.nextLine();
-
-        if(ime.isEmpty() || prezime.isEmpty()){
-            throw new PrazanString();
-        }
-        System.out.println("Uneste placu zaposlenika ");
-        placa = scanner.nextDouble();
-        if(placa<= 0){
-            throw new NemozeNulaImanjiodNule();
-        }
 
 
 
-        return new Zaposlenik(ime,prezime,placa);
-
-        }
 
 }
 
