@@ -13,12 +13,25 @@ public class Knjiznica implements Kjnjiznicar {
         this.posudeneKnjige = new ArrayList<>();
     }
 
+    public void unosKnjige(Knjiga knjiga){
+        this.dostupneKnjige.add(knjiga);
+    }
+
     /**
-     * dodavanje nove knjige u knjiynicu
-     * @param knjiga koja se dodaje u knjiznicu , kako bi se mogal posu]ivati
+     * dodavanje nove knjige u knjiznicu
+     *
      */
-    public void unesiNovuKnjiguUKnjiznicu(Knjiga knjiga){
-        dostupneKnjige.add(knjiga);
+    public void korisnikUnesiNovuKnjiguUKnjiznicu(){
+        System.out.println(" ");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("ime knjige:");
+        String imeKnjige = scanner.nextLine();
+        System.out.println("Ime autora knjige:");
+        String imeAutora = scanner.nextLine();
+        System.out.println("Unestite godinu izdanja: ");
+        int godinaIzdanja = scanner.nextInt();
+
+        unosKnjige(new Knjiga(imeKnjige,imeAutora,godinaIzdanja));
 
     }
 
@@ -40,15 +53,10 @@ public class Knjiznica implements Kjnjiznicar {
 
     }
 
+
     /**
-     * registrira novog clana u knjiznicu
-     * @param clan
+     * Registracija novog clana u knjiznicu
      */
-    private void dodajNovogClana(Clan clan){
-        this.clanovi.add(clan);
-    }
-
-
     public void unosNovagClana(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Unesite ime:");
@@ -56,17 +64,27 @@ public class Knjiznica implements Kjnjiznicar {
         System.out.println("Unestie Prezime:");
         String prezime = scanner.nextLine();
         int brojClana= this.clanovi.size()+1;
-        dodajNovogClana(new Clan(ime,prezime,brojClana));
+        this.clanovi.add(new Clan(ime,prezime,brojClana));
     }
 
     public List<Clan> getClanovi() {
+
         return clanovi;
+    }
+
+    public List<Knjiga> getDostupneKnjige() {
+        return dostupneKnjige;
+    }
+
+    public List<Knjiga> getPosudeneKnjige() {
+        return posudeneKnjige;
     }
 
     /**
      *
-     * @param ime
-     * @return
+     * @param ime ima clana kojeg trazimo
+     * @return vraca clana ako postoji ili null ako ne
+     * @throws ClanNePostoji ako clan nepostoji
      */
     public Clan prodadiClanaPoImenu(String ime) throws ClanNePostoji {
         Clan trazeniClan  = null;
@@ -79,15 +97,89 @@ public class Knjiznica implements Kjnjiznicar {
 
         return trazeniClan;
     }
-    public Knjiga prodadiKnjiguPoImenu(String ime) throws KnjigaNijeDostupna {
-        Knjiga trazenaKnjiga =null;
 
+    /**
+     *
+     * @param ime ime knjige koju trazimeo
+     * @param vracanjeIliPosudba String posudba ako je posudba , povrat ili prazan string ako je povat knigae
+     * @return vraca knjigu ako je nade ili null
+     * @throws KnjigaNijeDostupna ako knjiga ne postoji
+     */
+    public Knjiga prodadiKnjiguPoImenu(String ime, String vracanjeIliPosudba) throws KnjigaNijeDostupna {
+        Knjiga trazenaKnjiga =null;
+        if(vracanjeIliPosudba.equals("posudba")){
             for (Knjiga knjiga : this.dostupneKnjige) {
                 if (knjiga.getIme().equals(ime)) {
                     trazenaKnjiga = knjiga;
+                    break;
                 }
             }
-            return trazenaKnjiga;
+
+        }else{
+            for (Knjiga knjiga : this.posudeneKnjige) {
+                if (knjiga.getIme().equals(ime)) {
+                    trazenaKnjiga = knjiga;
+                    break;
+                }
+            }
+
+        }
+        return trazenaKnjiga;
     }
+
+    /**
+     * ispis dostupnih knjiga u knjiznici
+     */
+    public void ispisDostupnihKnjiga(){
+        if (this.dostupneKnjige.isEmpty()){
+            System.out.println("Trenutno su sve knjige psudene");
+            System.out.println(" ");
+        }else{
+            System.out.println("Dostupne knjige su:");
+            for (Knjiga knjiga : this.dostupneKnjige) {
+                System.out.println(knjiga.toString());
+
+            }
+
+        }
+
+    }
+
+    /**
+     * ispis posudenih knjiga u knjiznici
+     */
+    public void ispisPosudnjenihKnjiga(){
+        if (this.posudeneKnjige.isEmpty()){
+            System.out.println("Trenutno su sve knjige dostupne");
+            System.out.println(" ");
+        }else{
+            System.out.println("Knjige koje su posudene:");
+            for (Knjiga knjiga : this.posudeneKnjige) {
+                System.out.println(knjiga.toString());
+
+            }
+
+        }
+
+    }
+
+    /**
+     * ispis svih clanova knjiznice
+     */
+    public void ispisClanovaKnjiznice(){
+        if (this.clanovi.isEmpty()){
+            System.out.println("Knjiznica nema clanova");
+            System.out.println(" ");
+        }else{
+            System.out.println("Clanovi knjiznice:");
+            for (Clan clan : this.clanovi) {
+                System.out.println(clan.toString());
+
+            }
+
+        }
+
+    }
+
 
 }

@@ -49,13 +49,14 @@ public class Clan{
     public void posudivanjeKnjige(Knjiga knjiga){
         this.posudeneKnjige.add(knjiga);
     }
-    public void ispisPodataka(){
-        System.out.println("Ime: "+this.ime+" Prezime: "+this.prezime+" Broj: "+this.clanskiBroj);
-        System.out.println("Posuđene Knjige:");
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
         for (Knjiga knjiga : this.posudeneKnjige) {
-            knjiga.ispisPodataka();
+            sb.append(knjiga.toString()).append("\n");
         }
-        System.out.println(" ");
+        return "Ime: "+this.ime+" Prezime: "+this.prezime+" Clanski Broj: "+this.clanskiBroj+ "\nPosuđene Knjige:\n"+sb;
+
 
     }
 }

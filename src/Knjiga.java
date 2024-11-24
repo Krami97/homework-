@@ -16,8 +16,8 @@ public class Knjiga {
         this.godinaIzdanja = godinaIzdanja;
     }
 
-    public void ispisPodataka(){
-        System.out.println("Ime: "+this.ime+" Prezime: "+this.autor+" Itdanje : "+this.godinaIzdanja);
+    public String toString(){
+        return "Ime: "+this.ime+" Autor: "+this.autor+" Itdanje : "+this.godinaIzdanja;
     }
 
     public String getIme() {
