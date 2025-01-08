@@ -1,32 +1,30 @@
 
 import java.util.Set;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
-        // kreiranje hashSeta
-        HashSet<String> studenti = new HashSet<>();
-        // dodavanje vrijednosti u hash set
-        studenti.add("Tin");
-        studenti.add("Marko");
-        studenti.add("Pero");
-        studenti.add("Ivan");
-
-        // provjer adali skup sadrži određenu vrijednost
-        if(studenti.contains("Marko")){
-            System.out.println("Marko postoji");
-        }else{
-            System.out.println("Marko ne postoji");
-        }
+        TreeSet<String> gradovi = new TreeSet<>();
+        
+        gradovi.add("Zagreb");
+        gradovi.add("Split");
+        gradovi.add("Rijeka");
+        gradovi.add("Šibenik");
+        gradovi.add("Vinkovci");
 
 
-        //ispis svih elementa hashSeta pomocu for petlje
-        for (String string : studenti) {
+        for (String string : gradovi) {
             System.out.println(string);
         }
-        //uklanjanje jednog imena iz skupa
-        studenti.remove("Tin");
-        System.out.println(studenti);
+
+        System.out.println(gradovi.first());
+        System.out.println(gradovi.last());
+        gradovi.remove("Rijeka");
+
+        for (String string : gradovi) {
+            System.out.println(string);
+        }
+
     }
 }
 
