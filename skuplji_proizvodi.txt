@@ -1,5 +1,0 @@
-Skuplji Proizvoidi:
-------------------------------------------------------------------
-|Naziv proizvoda: Lonac|Cijena proizvoda: 54.99$|Kolicna proizvoda: 5|
-------------------------------------------------------------------
-|Naziv proizvoda: mikser|Cijena proizvoda: 59.99$|Kolicna proizvoda: 3|
