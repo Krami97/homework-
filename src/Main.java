@@ -1,46 +1,44 @@
 /*
-* Zadatak 1: Brojanje riječi u tekstu koristeći Map
+Zadatak 2: Popis jedinstvenih vrijednosti koristeći Set
 Napišite program koji:
-1.Traži od korisnika unos teksta.
-2.Koristi HashMap za brojanje koliko se puta svaka riječ pojavljuje u tekstu.
-3.Ignorira velika/mala slova i interpunkcijske znakove.
-4.Prikazuje rezultat (svaka riječ i broj pojavljivanja).
-*
+1.Od korisnika traži unos brojeva (razdvojenih razmakom).
+2.Koristi HashSet za izdvajanje samo jedinstvenih brojeva (bez ponavljanja).
+3.Ispisuje sve jedinstvene brojeve.
+4.Traži najveći i najmanji broj koristeći odgovarajuće metode skupa.
+
 * */
 
-import java.util.HashMap;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        //TODO 1. Traži od korisnika unos teksta.
+    //TODO 1. Od korisnika traži unos brojeva (razdvojenih razmakom).
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Unesite neki tekst:");
-        String tekst  = scanner.nextLine();
+        System.out.println("Unesite nekoliko brojeva razdvojenih razmakom");
+        String nizBrojeva = scanner.nextLine();
+        String[] brojevi  = nizBrojeva.split(" ");
+        
+    //TODO 2. Koristi HashSet za izdvajanje samo jedinstvenih brojeva (bez ponavljanja).
+        HashSet<Integer> jedinstveniBrojevi = new HashSet<>();
 
-        //TODO 2. Koristi HashMap za brojanje koliko se puta svaka riječ pojavljuje u tekstu.
-        //TODO 3.Ignorira velika/mala slova i interpunkcijske znakove.
-        String[] rijeci = tekst.toLowerCase().replaceAll("[^3a-zA-Z0-9 ]","").split(" ");
-        HashMap<String, Integer> brojRijeci = new HashMap<>();
-
-
-        for (String string : rijeci) {
-            if (brojRijeci.containsKey(string)){
-                brojRijeci.put(string,brojRijeci.get(string)+1);
-            }else {
-                brojRijeci.put(string,1);
-            }
+        for (String string : brojevi) {
+            jedinstveniBrojevi.add(Integer.valueOf(string));
         }
 
-        //TODO 4. Prikazuje rezultat (svaka riječ i broj pojavljivanja).
-        for (String string : brojRijeci.keySet()) {
-            System.out.printf("Rijec %s pojavljuje se %d puta u tekatu\n",string,brojRijeci.get(string));
+    //TODO 3.  Ispisuje sve jedinstvene brojeve.
+        System.out.println("Jedinstveni borjevi su:");
+        for (Integer i : jedinstveniBrojevi) {
+            System.out.println(i);
         }
+    //TODO 4. Traži najveći i najmanji broj koristeći odgovarajuće metode skupa.
+        System.out.println("\nNajveci jedinstveni borj je "+ Collections.max(jedinstveniBrojevi));
+        System.out.println("\nNajmanji jedinstveni borj je "+ Collections.min(jedinstveniBrojevi));
 
-
-
-
-    }
+        
+    }   
 }
 
