@@ -1,52 +1,46 @@
+/*
+* Zadatak 1: Brojanje riječi u tekstu koristeći Map
+Napišite program koji:
+1.Traži od korisnika unos teksta.
+2.Koristi HashMap za brojanje koliko se puta svaka riječ pojavljuje u tekstu.
+3.Ignorira velika/mala slova i interpunkcijske znakove.
+4.Prikazuje rezultat (svaka riječ i broj pojavljivanja).
+*
+* */
+
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        HashMap<String,Polaznik> polaznici = new HashMap<>();
-        Scanner scanner = new Scanner(System.in);
-        int izbor;
-        do{
-            System.out.println("Izaberi opicije:");
-            System.out.println("1 dodaj polaznika");
-            System.out.println("2 ispisi polaznike");
-            System.out.println("0 izaz iz porgrama");
-            izbor = scanner.nextInt();
 
-            switch (izbor){
-                case 1 :
-                    dodavanjePolaznika(polaznici);
-                    break;
-                case 2 :
-                    ispisPolaznika(polaznici);
-                    System.out.println(" ");
-                    break;
+        //TODO 1. Traži od korisnika unos teksta.
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Unesite neki tekst:");
+        String tekst  = scanner.nextLine();
+
+        //TODO 2. Koristi HashMap za brojanje koliko se puta svaka riječ pojavljuje u tekstu.
+        //TODO 3.Ignorira velika/mala slova i interpunkcijske znakove.
+        String[] rijeci = tekst.toLowerCase().replaceAll("[^3a-zA-Z0-9 ]","").split(" ");
+        HashMap<String, Integer> brojRijeci = new HashMap<>();
+
+
+        for (String string : rijeci) {
+            if (brojRijeci.containsKey(string)){
+                brojRijeci.put(string,brojRijeci.get(string)+1);
+            }else {
+                brojRijeci.put(string,1);
             }
-        }while(izbor !=0 );
-
-    }
-    public static void dodavanjePolaznika(HashMap<String,Polaznik> polaznici){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Ime polaznika");
-        String ime = scanner.nextLine();
-        System.out.println("Prezime polaznika");
-        String prezime = scanner.nextLine();
-        System.out.println("email polaznika");
-        String email = scanner.nextLine();
-        if(polaznici.containsKey(email)){
-            System.out.println("Polaznik sa tim emailom vec postoji!\n");
-        }else{
-            polaznici.put(email,new Polaznik(ime,prezime,email));
-            System.out.println("Polaznik kreiran\n");
         }
-    }
-    public static void ispisPolaznika(HashMap<String,Polaznik> polaznici){
-        for (Polaznik value : polaznici.values()) {
-            System.out.println(value);
+
+        //TODO 4. Prikazuje rezultat (svaka riječ i broj pojavljivanja).
+        for (String string : brojRijeci.keySet()) {
+            System.out.printf("Rijec %s pojavljuje se %d puta u tekatu\n",string,brojRijeci.get(string));
         }
+
+
+
+
     }
-
-
-
 }
 
