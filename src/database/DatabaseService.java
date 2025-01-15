@@ -23,7 +23,7 @@ public class DatabaseService {
             connection = DriverManager.getConnection(url, user, password);
 
             if (connection != null) {
-                System.out.println("Uspješno povezivanje s bazom!");
+
             }
             return connection;
 
