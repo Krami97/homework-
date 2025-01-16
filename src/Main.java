@@ -1,42 +1,49 @@
 import database.DatabaseService;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws SQLException {
+        List<String> naziviDrzava = new ArrayList<>();
 
-        int odabir;
-        do {
-            System.out.println("Odaberite:");
-            System.out.println("1 - dodanj novi grad");
-            System.out.println("2 - izmjena postojeceg grada");
-            System.out.println("3 - brisanje postojeceg grada ");
-            System.out.println("4 - prikaz svih gradova sortiranih po nazivu");
-            System.out.println("5 - za izlaz");
-            odabir = scanner.nextInt();
+        for(int i = 0;i<10;i++){
+            naziviDrzava.add("Drzava"+i);
+        }
+
+        Connection connection = DatabaseService.CreateConnection();
 
 
-            switch (odabir){
-                case 1:
-                    InsertGrad();
-                    break;
-                case 2:
-                    updateGrad();
-                    break;
-                case 3:
-                    deleteGrad();
-                    break;
-                case 4:
-                    prikazGradova();
-                    break;
+        String query  = "INSERT INTO Drzava (Naziv) VALUES(?)";
 
-            }
-        } while (odabir != 5);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        for (String nazivDrzave : naziviDrzava) {
+            preparedStatement.setString(1,nazivDrzave);
+            preparedStatement.executeUpdate();
+            System.out.println("Dodana: " + nazivDrzave);
+        }
+        preparedStatement.close();
+        connection.close();
+
+
+
+
+
 
 
     }
+
+
+
+
+
+
+
+
+
     public static void prikazDrzava(){
         Connection connection = DatabaseService.CreateConnection();
         String query = "SELECT * FROM Drzava";
