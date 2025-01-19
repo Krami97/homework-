@@ -14,7 +14,7 @@ public class DatabaseService {
     //kaoko nebi morali svaki put kreirati
     public static Connection CreateConnection(){
         // URL za povezivanje s bazom podataka
-        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=AdventureWorksOBP;encrypt=true;trustServerCertificate=true";
+        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=Knjiznica;encrypt=true;trustServerCertificate=true";
         String user = "root";
         String password = "password";
         Connection connection = null;
